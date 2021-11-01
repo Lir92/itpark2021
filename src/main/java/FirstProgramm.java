@@ -1,6 +1,6 @@
 public class FirstProgramm {
 
     public static void main(String[] args) {
-        System.out.println("Hello Wordl!123");
+        System.out.println("My first code at the lesson");
     }
 }
