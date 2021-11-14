@@ -22,7 +22,7 @@ public class HomeWorkLesson4 {
                 }
                 startNumber++;
                 if ( request < startNumber * startNumber){
-                    System.out.println("Данное число не имеет квадратного корня");
+                    System.out.println("Число " + request + " не имеет квадратного корня");
                 }
             } while (request >= startNumber * startNumber);
         }
