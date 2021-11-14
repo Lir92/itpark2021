@@ -18,9 +18,12 @@ public class HomeWorkLesson4 {
             do {
                 if (request == startNumber * startNumber){
                     System.out.println("Корень числа " + request + " = " + startNumber);
+                    break;
                 }
-                int increase = startNumber++;
-
+                startNumber++;
+                if ( request < startNumber * startNumber){
+                    System.out.println("Данное число не имеет квадратного корня");
+                }
             } while (request >= startNumber * startNumber);
         }
     }
