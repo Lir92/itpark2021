@@ -9,7 +9,7 @@ public class HomeWorkLesson4 {
         System.out.print("Введите число для вычисления квадратного корня: ");
         while (!number.hasNextInt()){
             String text = number.next();
-            System.out.print( text+ " не является числом. Введите число для вычисления квадратного корня: ");
+            System.out.print( text + " не является числом. Введите число для вычисления квадратного корня: ");
         }
         int request = number.nextInt();
         int startNumber = 2;
