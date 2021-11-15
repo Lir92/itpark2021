@@ -12,7 +12,8 @@ public class HomeWorkLesson4 {
             System.out.print( text + " не является целым числом. Введите число для вычисления квадратного корня: ");
         }
         int request = number.nextInt();
-        int startNumber = 2;
+        int startNumber = 1;
+        number.close();
 
         if (request == 0) {
             System.out.println("Корень числа 0 = 0");
