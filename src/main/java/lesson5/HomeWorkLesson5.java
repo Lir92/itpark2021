@@ -16,6 +16,12 @@ public class HomeWorkLesson5 {
         }
 
         int num = requestedNumber.nextInt();
+
+        if (num < 0){
+            System.out.println(num + " негативное число, для вычисления необходимо положительное целое число.");
+            return;
+        }
+
         int [] fibonacciSequence = new int[num];
         fibonacciSequence[0] = 0;     // Первые 2 числа в ряде Фибоначчи
         fibonacciSequence[1] = 1;
