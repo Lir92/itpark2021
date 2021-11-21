@@ -10,15 +10,18 @@ public class HomeWorkLesson5 {
         Scanner requestedNumber = new Scanner(System.in);
         System.out.print("Введите цифру для вычисления числа Фибоначчи: ");
 
-        while (!requestedNumber.hasNextInt()){
+        while (!requestedNumber.hasNextInt()) {
             String text = requestedNumber.next();
             System.out.print(text + " не является числом. Введите целое число: ");
         }
 
         int num = requestedNumber.nextInt();
 
-        if (num < 0){
+        if (num < 0) {
             System.out.println(num + " негативное число, для вычисления необходимо положительное целое число.");
+            return;
+        } else if (num == 0 || num == 1){
+            System.out.println("1-е число Фибоначчи = 0.");
             return;
         }
 
