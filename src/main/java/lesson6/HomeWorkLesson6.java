@@ -39,7 +39,7 @@ public class HomeWorkLesson6 {
                 max = array[i];
             }
         }
-        max = Math.round(max * 100000.0) / 100000.0;
+        //max = Math.round(max * 100000.0) / 100000.0;
         System.out.println("Максимальное число в массиве " + Arrays.toString(array) + " = " + max);
 
         double min = array[0];
@@ -48,14 +48,14 @@ public class HomeWorkLesson6 {
                 min = array[i];
             }
         }
-        min = Math.round(min * 100000.0) / 100000.0;
+        //min = Math.round(min * 100000.0) / 100000.0;
         System.out.println("Минимальное число в массиве " + Arrays.toString(array) + " = " + min);
 
         double result = 0;
         for (int i = 0; i < array.length; i++) {
             result += array[i];
             }
-        result = Math.round(result * 100000.0) / 100000.0;
+        //result = Math.round(result * 100000.0) / 100000.0;
         System.out.println("Среднее значение чисел в массиве " + Arrays.toString(array) + " = " + result/num);
     }
 }
