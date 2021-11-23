@@ -2,7 +2,7 @@ package lesson5;
 
 import java.util.Scanner;
 
-public class HomeWorkLesson5 {
+public class HomeWorkLesson5FibonacciSequence {
     public static void main(String[] args) {
 
         // Вычисление n-го числа Фибоначи - Fn = F(n-1) + F(n-2)
@@ -19,6 +19,9 @@ public class HomeWorkLesson5 {
 
         if (num < 0){
             System.out.println(num + " негативное число, для вычисления необходимо положительное целое число.");
+            return;
+        } else if (num == 0 || num == 1){
+            System.out.println("1-е число Фибоначчи = 0.");
             return;
         }
 
