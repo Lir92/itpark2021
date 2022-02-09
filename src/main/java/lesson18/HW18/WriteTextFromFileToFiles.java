@@ -1,4 +1,4 @@
-package lesson18.HW18TextFromFileToFiles;
+package lesson18.HW18;
 
 import lombok.SneakyThrows;
 import java.io.*;
@@ -11,10 +11,10 @@ public class WriteTextFromFileToFiles {
     public static void main(String[] args) {
 
         String fileToRead = "/file.txt";
-        String filePath = "D:\\test\\.txt";
+        String filePathForName = "D:\\test\\.txt";
 
         new Thread(() -> WriteTextFromFileToFiles.
-                writeToFile(WriteTextFromFileToFiles.class.getResourceAsStream(fileToRead), filePath)).start();
+                writeToFile(WriteTextFromFileToFiles.class.getResourceAsStream(fileToRead), filePathForName)).start();
     }
 
     @SneakyThrows
@@ -27,11 +27,18 @@ public class WriteTextFromFileToFiles {
             int counter = 1;
             while (br.ready()) {
                 String heading = Arrays.toString(fileName());
-                FileWriter fileWriter = new FileWriter(pathForNewFiles[0] + " " + heading + " " + counter + "." + pathForNewFiles[1]); // тут создаём новый файл с новым номером, н-р "Новая папка 1"
+                FileWriter fileWriter = new FileWriter(pathForNewFiles[0] + " " + heading + " " + counter + "." + pathForNewFiles[1]); // тут создаём новый файл с именем по первой строке в файле
                 fileWriter.write(br.readLine());
                 fileWriter.close();
                 counter ++;
             }
+
+//            while (br.ready()) {
+//                FileWriter fileWriter = new FileWriter("New file" + counter + ".txt"); // создаём файл с префиксом "New file" и расширением "txt"
+//                fileWriter.write(br.readLine());
+//                fileWriter.close();
+//                counter ++;
+//            }
         }
     }
 
