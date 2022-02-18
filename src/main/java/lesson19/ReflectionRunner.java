@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class ReflectionRunner {
 
     public static void main(String[] args) throws Exception {
-        Car car = new Car("Skoda", "Octavia", 1.6d, 1d);
+        Car car = new Car("Skoda", "Octavia", 1.6d/*, 1d*/);
         Class<? extends Car> aClass = car.getClass(); // 1-й способ получения ссылки на класс Class
     /**/Class<Car> carClass = Car.class; // 2-й способ получения ссылки на класс Class
         Class<?> thirdClass = Class.forName("lesson19.dto.Car"); // 3-й способ получения ссылки на класс Class. Данный метод требует обработку исключения
