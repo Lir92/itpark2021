@@ -32,7 +32,7 @@ public class WeatherApp  {
                 System.out.println("Облачность: " + jObject.getJSONArray("weather").getJSONObject(0).getString("description"));
                 isErrorHappened = false; // метка, что ошибки в вводе имени города нет.
             } catch (Exception e) {
-                System.out.println("Город " + city + " не найден");
+                System.out.println("Город \"" + city + "\" не найден.");
                 isErrorHappened = true; //метка, что ошибки в вводе имени города есть
             }
         } while (isErrorHappened); // повторяем цикл do-while, если произошла ошибка в вводе имени города и isErrorHappened в значении TRUE.
