@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ниже обязательные поле с конфигурациями Spring -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--  если в классе не реализован конструктор, а использован lombock и AllArgConstr & NoArgConstr, то определение
+    идёт через property, иначе - второй вариант  -->
+    <bean id="calculator" class="lesson25.spring.component.impl.CalculatorImpl">
+        <property name="a" value="15"/>
+        <property name="b" value="25"/>
+        <!--        <constructor-arg name="a" value="4854"/>-->
+        <!--        <constructor-arg name="b" value="25"/>-->
+    </bean>
+
+    <!--  ниже пример параметров для калькулятора значения в которого указываются в Runner  -->
+    <bean id="parametrizedCalculator" class="lesson25.spring.component.impl.ParametrizedCalculatorImpl"/>
+
+    <bean id="personDao" class="lesson25.spring.dao.impl.PersonDaoImpl"/>
+
+<!--     ниже создаём всё для создания бина на базе класса, в котором реализован конструктор -->
+        <bean id="personService" class="lesson25.spring.service.impl.PersonServiceImpl">
+            <constructor-arg name="personDao" ref="personDao"/>
+        </bean>
+
+    <!--     ниже создаём всё для создания бина на базе класса, без конструктора -->
+    <bean id="newPersonService" class="lesson25.spring.service.impl.AnotherPersonServiceImpl" />
+
+
+</beans>
