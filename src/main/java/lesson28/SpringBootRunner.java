@@ -19,7 +19,6 @@ import org.springframework.context.annotation.Conditional;
 @ConditionalOnProperty(name = "app.foodService.enabled") // аннотация условия, когда бин должен быть вызван и использован
 public class SpringBootRunner {
 
-
     public static void main(String[] args) {
         final ConfigurableApplicationContext appContext = SpringApplication.run(SpringBootRunner.class, args);
         FoodService foodService = appContext.getBean(FoodService.class);

@@ -10,6 +10,7 @@ import java.util.Scanner;
 public class UnzipRunner {
 
     public static void main(String[] args) {
+
         final ConfigurableApplicationContext appContext = SpringApplication.run(UnzipRunner.class, args);
         final UnzipService dearchivator = appContext.getBean(UnzipService.class);
 

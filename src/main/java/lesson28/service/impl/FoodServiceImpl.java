@@ -9,5 +9,6 @@ public class FoodServiceImpl implements FoodService {
     @Override
     public void feed() {
         System.out.println("Здесь вас точно накормят");
+
     }
 }

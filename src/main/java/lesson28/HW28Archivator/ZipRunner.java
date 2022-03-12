@@ -43,7 +43,6 @@ public class ZipRunner {
                 System.out.println("Фаил не найдет или выбрана неверная операция");
                 isErrorHappened = true;
             }
-
         } while (isErrorHappened);
     }
 }

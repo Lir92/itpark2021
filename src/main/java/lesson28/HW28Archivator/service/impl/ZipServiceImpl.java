@@ -28,7 +28,6 @@ public class ZipServiceImpl implements ZipService {
             while ((length = fileInStream.read(bytes)) >= 0) {
                 zipOutStream.write(bytes, 0, length);
             }
-
         }
     }
 }

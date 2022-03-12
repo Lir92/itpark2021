@@ -10,5 +10,6 @@ public class lecture28SpringBoot {
         мониторинг
 
     !!! start.spring.io - сервис по созданию предготовых SpringBoot приложений с модификациями и зависимостями !!!
+
      */
 }

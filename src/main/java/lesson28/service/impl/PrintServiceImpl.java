@@ -7,4 +7,5 @@ import org.springframework.stereotype.Service;
 @Service
 @Profile("local")
 public class PrintServiceImpl implements PrintService {
+
 }
