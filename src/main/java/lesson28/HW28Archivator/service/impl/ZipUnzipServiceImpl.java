@@ -43,19 +43,8 @@ public class ZipUnzipServiceImpl implements ZipUnzipService {
         try(ZipInputStream zis = new ZipInputStream(new FileInputStream(String.valueOf(archivePath)))) {
             ZipEntry zipEntry = zis.getNextEntry();
             while (zipEntry != null) {
-                File newFile = new File (destinationPath, zipEntry.getName());
-
                 // ниже проверяется необходимость и возможность создания новой дирректории
-                if (zipEntry.isDirectory()) {
-                    if (!newFile.isDirectory() && !newFile.mkdirs()) {
-                        throw new IOException("Не удалось создать новую директорию: " + newFile);
-                    }
-                } else {
-                    File parent = new File(destinationPath, zipEntry.getName()).getParentFile();
-                    if (!parent.isDirectory() && !parent.mkdirs()) {
-                        throw new IOException("Не удалось создать новую директорию: " + parent);
-                    }
-                }
+                File newFile = tryCreateDirectory(destinationPath, zipEntry);
 
                 // после прохождения всех проверок, пишем содержимое архивного файла в разархивированный файл
                 createExtractedFromZipFile(zis, newFile);
@@ -63,6 +52,21 @@ public class ZipUnzipServiceImpl implements ZipUnzipService {
             }
             zis.closeEntry();
         }
+    }
+
+    private File tryCreateDirectory(String destinationPath, ZipEntry zipEntry) throws IOException {
+        File newFile = new File (destinationPath, zipEntry.getName());
+        if (zipEntry.isDirectory()) {
+            if (!newFile.isDirectory() && !newFile.mkdirs()) {
+                throw new IOException("Не удалось создать новую директорию: " + newFile);
+            }
+        } else {
+            File parent = new File(destinationPath, zipEntry.getName()).getParentFile();
+            if (!parent.isDirectory() && !parent.mkdirs()) {
+                throw new IOException("Не удалось создать новую директорию: " + parent);
+            }
+        }
+        return newFile;
     }
 
     private void createExtractedFromZipFile(ZipInputStream zis, File newFile) throws IOException {
