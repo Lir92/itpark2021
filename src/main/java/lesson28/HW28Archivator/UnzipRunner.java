@@ -1,6 +1,6 @@
 package lesson28.HW28Archivator;
 
-import lesson28.HW28Archivator.service.UnzipService;
+import lesson28.HW28Archivator.service.ZipUnzipService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -12,7 +12,7 @@ public class UnzipRunner {
     public static void main(String[] args) {
 
         final ConfigurableApplicationContext appContext = SpringApplication.run(UnzipRunner.class, args);
-        final UnzipService dearchivator = appContext.getBean(UnzipService.class);
+        final ZipUnzipService dearchivator = appContext.getBean(ZipUnzipService.class);
 
         boolean isErrorHappened = false;
 

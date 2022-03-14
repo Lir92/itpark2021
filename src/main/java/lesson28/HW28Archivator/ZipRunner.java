@@ -1,13 +1,9 @@
 package lesson28.HW28Archivator;
 
-import lesson28.HW28Archivator.service.UnzipService;
-import lesson28.HW28Archivator.service.ZipService;
+import lesson28.HW28Archivator.service.ZipUnzipService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,8 +14,8 @@ public class ZipRunner {
 
     public static void main(String[] args) {
 
-        final ConfigurableApplicationContext appContext = SpringApplication.run(ZipRunner.class, args);
-        final ZipService archivator = appContext.getBean(ZipService.class);
+        final ConfigurableApplicationContext appContext = SpringApplication.run(UnzipRunner.class, args);
+        final ZipUnzipService dearchivator = appContext.getBean(ZipUnzipService.class);
 
         boolean isErrorHappened = false;
 
@@ -37,7 +33,7 @@ public class ZipRunner {
             String archiveName = scanner.next() + ".zip";
 
             try {
-                archivator.zipFile(filePath, archiveName);
+                dearchivator.zipFile(filePath, archiveName);
                 isErrorHappened = false;
             } catch (Exception e) {
                 System.out.println("Фаил не найдет или выбрана неверная операция");
