@@ -1,0 +1,18 @@
+#spring:
+#  profiles:
+#    active: local
+#
+#  application:
+#    name: itpark-app
+#  main:
+#    banner-mode: off
+##    log-startup-info: off
+#
+#app: #здесь прописывается выключатель для аннотации @Conditional
+#  foodService:
+#    enabled: true
+
+db:
+  url: jdbc:mysql://localhost:3306/db
+  login: user
+  password: password

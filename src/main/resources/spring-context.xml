@@ -27,5 +27,12 @@
     <!--     ниже создаём всё для создания бина на базе класса, без конструктора -->
     <bean id="newPersonService" class="lesson25.spring.service.impl.AnotherPersonServiceImpl" />
 
+    <bean id="beanA" class="lesson26.BeanA">
+            <property name="bean" ref="beanB"/>
+    </bean>
+    <bean id="beanB" class="lesson26.BeanB" >
+        <property name="bean" ref="beanA"/>
+    </bean>
+
 
 </beans>

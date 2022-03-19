@@ -1,0 +1,64 @@
+server:
+  port: 8080 # default 8080
+#  servlet:
+#    context-path: /myProject
+
+spring:
+  main:
+    allow-circular-references: true # without that cannot start spring shell
+
+  profiles:
+    active: local
+
+  application:
+    name: itpark-app
+#    titleAndBanner: 'New title for application' # здесь 2 вида, как можно указывать меппируемые поля
+    title-and-banner: 'New title for application' # - это более стандартный и часто употребляемый стиль именования
+
+  messages:
+    basename: messages # i18n.messages
+
+  datasource: # специальная проперти для работы с БД и Spring JDBC
+    url: &dbUrl jdbc:mysql://localhost:3306/db
+    username: user
+    password: password
+    driverClassName: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    generate-ddl: false # генерация DDL операции
+    hibernate: # здесь возможность указания специфической работы hibernate
+#      #validate: validate the schema, makes no changes to the database. # данная структура позволяет БД провериться на актуальность
+#      #update: update the schema. # обновление - если в БД чего-то нет, то при этом режиме будут созданы недостающие элементы
+#      #create: creates the schema, destroying previous data. # при помощи hibernate создаётся новое состояние, при этом удаляя старое
+#      #create-drop: drop the schema at the end of the session
+#      #none: is all other cases.
+      ddl-auto: validate # - сюда указывается параметр из вышеперечисленных опций
+      naming: # опция для определения того, как будут именоваться колонки в БД
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        default_schema: db
+        format_sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  liquibase:
+    change-log: 'classpath:db/migrations/changeLog.xml' # список миграций, которые необходимо выполнить во время работы Liquibase
+
+application:
+  value: 12
+  setting:
+    name: *dbUrl
+    file: 'classpath:/file.txt'
+    locale: ru
+    lines:
+      - Тут был текст
+      - И здесь должен быть текст
+      - Финальный текст
+
+
+#  main:
+#    banner-mode: 'off'
+
+#app:
+#  foodService:
+#    enabled: 1
