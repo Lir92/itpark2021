@@ -1,5 +1,6 @@
 package lesson31.repository;
 
+import lesson25.entity.Department;
 import lesson25.entity.Employee;
 import lesson31.dto.EmployeeDto;
 import lesson31.projection.EmployeeProjection;
@@ -15,24 +16,31 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
-    List<lesson25.entity.Employee> findBySalary(BigDecimal salary); // ищем сотрудников с зп = salary.
+    List<Employee> findBySalary(BigDecimal salary); // ищем сотрудников с зп = salary.
 
-    List<lesson25.entity.Employee> findBySalaryOOrEmpName(BigDecimal salary, String empName);
+    List<Employee> findBySalaryOrEmpName(BigDecimal salary, String empName);
 
     @Query("select e from Employee e " +
             "where e.department.id = :depId")
     List<Employee> findEmployeeByDepartmentId(@Param("depId")Integer departmentId);
 
 //    @Query("select new lesson31.dto.EmployeeDto(e.empName, e.salary) from Employee e " +
-//            "where e.department.id = :depId")
-//    List<EmployeeDto> findEmployeeByDepId(Integer departmentId);
+//            "where e.department.id = :departmentId")
+//    List<EmployeeDto> findEmployeeByDepId(@Param("departmentId") Integer departmentId);
 
     @Query("select e.empName as name, e.salary as salary from Employee e " +
             "where e.department.id = :depId")
-    List<EmployeeProjection> findEmployeeByDepId(Integer departmentId);
-
+    List<EmployeeProjection> findEmployeeByDepId(@Param("depId")Integer depId);
+//
     @Modifying //анотация, если происходят модификации
     @Query("update Employee e set e.salary = :salary " +
             "where e.id = :employeeId")
-    void updateById(Integer employeeId, BigDecimal salary);
+    void updateById(@Param("employeeId")Integer employeeId, @Param("salary")BigDecimal salary);
+
+    @Modifying //анотация, если происходят модификации
+    @Query("update Employee e set e.department = :department " +
+            "where e.id = :employeeId")
+    void updateDepartmentForEmployee(@Param("employeeId") Department department, @Param("salary")Integer employee);
+
+
 }
