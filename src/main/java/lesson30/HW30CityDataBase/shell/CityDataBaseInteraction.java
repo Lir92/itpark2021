@@ -54,6 +54,13 @@ public class CityDataBaseInteraction {
         );
     }
 
+    @ShellMethod(value = "Find city by name", key = "fcn")
+    public void findCityByName(
+            @ShellOption({"-n", "--name"}) String cityName) {
+        cityService.findCitiesByName(cityName);
+        log.info("Вы искали информацию по городу {} {}", cityName, cityService.findCitiesByName(cityName));
+    }
+
     @ShellMethod(value = "Delete city", key = "dc")
     public void deleteCity(
             @ShellOption({"-c", "--code"}) Integer cityCode) {
