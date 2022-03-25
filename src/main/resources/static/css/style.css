@@ -1,0 +1,18 @@
+#labelText {
+    float: left;
+}
+
+.body{
+    color: green;
+}
+
+#labelText:read-only {
+    float: left;
+}
+
+.holder {
+    height: 100px;
+    width: 200px;
+    background: red;
+}
+
