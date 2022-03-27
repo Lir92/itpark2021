@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Calculator</title>
+    <title>Converter</title>
     <script src="/webjars/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/calculator.js"></script>
     <link rel="stylesheet" href="/webjars/bootstrap/4.5.0/css/bootstrap.min.css" />
@@ -10,24 +10,23 @@
 <body>
     <div>
         <div>
-            <label for="arg1">First number</label>
-            <input id="arg1" type="text" name="arg1"/>
+            <label for="name">Currency name</label>
+            <input id="name" type="text" name="name"/>
         </div>
         <div>
-            <label for="arg2">Second number</label>
-            <input id="arg2" type="text" name="arg2"/>
+            <label for="qtty">Currency quantity</label>
+            <input id="qtty" type="text" name="qtty"/>
         </div>
 
         <div>
-            <button id="calculate">Calculate</button>
+            <button id="convert">Convert currency</button>
         </div>
 
         <div>
             <span id="result">
-                Calculations were not made yet
+                Currency was not converted yet
             </span>
         </div>
     </div>
-
 </body>
 </html>
