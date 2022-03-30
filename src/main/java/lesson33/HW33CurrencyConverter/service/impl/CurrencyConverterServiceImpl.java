@@ -8,18 +8,15 @@ import org.springframework.stereotype.Service;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.net.URLConnection;
-import java.text.DecimalFormat;
 
 @Service
-//@RequiredArgsConstructor
 public class CurrencyConverterServiceImpl implements CurrencyConverterService {
 
-    private static final String RESULT_PATTERN = "#0.00";
-
     @SneakyThrows
-    private static String readFromURI() { // используем метод private, так как доступ извне не нужен.
+    private static String readFromURI() {
         StringBuilder currencyInfo = new StringBuilder();
         URL currencyURL = new URL("https://www.cbr-xml-daily.ru/daily_json.js");
         URLConnection urlConnection = currencyURL.openConnection();
@@ -41,8 +38,7 @@ public class CurrencyConverterServiceImpl implements CurrencyConverterService {
     @Override
     public BigDecimal convertCurrency(String name, int qtty) {
         JSONObject jObject = new JSONObject(readFromURI());
-        return BigDecimal.valueOf(jObject.getJSONObject("Valute").getJSONObject(name).getDouble("Value") * qtty);
-//        return qtty + " " + jObject.getJSONObject("Valute").getJSONObject(name).getString("CharCode") + " = " +
-//                decimalResult + " рубль(ей)";
+        return BigDecimal.valueOf(jObject.getJSONObject("Valute").getJSONObject(name).getDouble("Value") * qtty)
+                .setScale(2, RoundingMode.UP);
     }
 }

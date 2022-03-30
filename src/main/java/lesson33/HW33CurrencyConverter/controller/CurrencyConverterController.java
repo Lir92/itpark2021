@@ -13,13 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/currencyConverter")
 public class CurrencyConverterController {
 
-//    @Value("${spring.application.name}}")
-//    private String application;
-
     private final CurrencyConverterService converterService;
 
     @PostMapping("/convertCurrency")
-    public CurrencyConverterResultDto convertCurrency(@RequestParam("name")String name, @RequestParam("qtty") int qtty){
+    public CurrencyConverterResultDto convertCurrency(@RequestParam String name, @RequestParam int qtty){
         return new CurrencyConverterResultDto(converterService.getCurrencyName(name), converterService.convertCurrency(name, qtty));
     }
 
