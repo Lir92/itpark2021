@@ -32,6 +32,10 @@
         <json-simple.version>1.1.1</json-simple.version>
         <zip4j.version>2.9.1</zip4j.version>
         <spring-shell-starter.version>2.0.1.RELEASE</spring-shell-starter.version>
+        <bootstrap.version>4.5.0</bootstrap.version>
+        <jquery.version>3.3.1</jquery.version>
+        <maven-compiler-plugin.compilerArg>spring</maven-compiler-plugin.compilerArg>
+        <mapstruct.version>1.4.2.Final</mapstruct.version>
     </properties>
 
     <parent>
@@ -41,13 +45,18 @@
     </parent>
 
     <dependencies>
-        <!-- A -->
+        <!-- B -->
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>${bootstrap.version}</version>
+        </dependency>
+        <!-- C -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-io</artifactId>
             <version>1.3.2</version>
         </dependency>
-        <!-- C -->
         <dependency>
             <groupId>commons-lang</groupId>
             <artifactId>commons-lang</artifactId>
@@ -88,6 +97,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>${jquery.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
             <version>${json.version}</version>
@@ -113,6 +127,11 @@
             <version>${lombok.version}</version>
         </dependency>
         <!-- M -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>${mapstruct.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
@@ -141,7 +160,15 @@
 <!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -153,11 +180,11 @@
             <artifactId>spring-context</artifactId>
             <version>${spring-context.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.shell</groupId>
-            <artifactId>spring-shell-starter</artifactId>
-            <version>${spring-shell-starter.version}</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.shell</groupId>-->
+<!--            <artifactId>spring-shell-starter</artifactId>-->
+<!--            <version>${spring-shell-starter.version}</version>-->
+<!--        </dependency>-->
         <!-- V -->
         <dependency>
             <groupId>javax.validation</groupId>
@@ -177,17 +204,34 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>2.6.3</version>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-compiler-plugin</artifactId>-->
-<!--                <version>${maven-compiler-plugin.version}</version>-->
-<!--            </plugin>-->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-surefire-plugin</artifactId>-->
-<!--                <version>${maven-surefire-plugin.version}</version>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.mapstruct</groupId>
+                            <artifactId>mapstruct-processor</artifactId>
+                            <version>${mapstruct.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                    <compilerArgs>
+                        <compilerArg>-AmapStruct.defaultComponentModel=${maven-compiler-plugin.compilerArg}</compilerArg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
