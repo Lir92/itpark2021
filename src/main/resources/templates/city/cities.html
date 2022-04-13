@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List of all cities</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" href="css/style.css">
+    <script src="webjars/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("a[id^='city']").click(function (event) {
+                if (confirm('Are you sure to delete this city?')) {
+                    let cityName = $(this).attr('name').replace('city_', '');
+                    $.ajax({
+                        url: '/cities/' + cityName,
+                        type: 'DELETE',
+                        success: function (result) {
+                            if (result.success) {
+                                location.href = '/cities';
+                            }
+                        }
+                    });
+                }
+                event.preventDefault();
+            });
+        });
+    </script>
+</head>
+<body>
+<p><strong>Cities:</strong></p>
+
+<div id="navigation">
+    <a th:if="${cities.hasPrevious}" th:href="@{/cities(page=${cities.currentPage - 1})}" href="cities.html"><img <!-- здесь реализована проверка наличия предыдущих страниц и перелистывание -->
+            alt="Previous page" th:src="@{/images/previous.png}"/></a>
+    Current page <span th:text="${cities.currentPage + 1}">0</span> of <span th:text="${cities.totalPage}">2</span>
+    <a th:if="${cities.hasNext}" th:href="@{/cities(page=${cities.currentPage + 1})}" href="cities.html"><img <!-- здесь реализована проверка наличия следующих страниц и перелистывание -->
+            alt="Next page" th:src="@{/images/next.png}"/></a>
+</div>
+<table class="cities"> <!-- в теге table объявляются наименования столбцов таблицы -->
+    <thead>
+    <tr>
+        <th>City name Russian</th>
+        <th>City name English</th>
+        <th>City code</th>
+        <th>Population</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="city: ${cities.data}">
+        <td th:text="${city.ruName}">Art</td>
+        <td th:text="${city.enName}">Art</td>
+        <td th:text="${city.code}">Art</td>
+        <td th:text="${city.population}">Art</td>
+        <td>
+            <a th:href="@{/city/edit(ruName=${city.ruName})}" href="city.html"><img alt="Edit"
+                                                                                                   th:src="@{/images/edit.png}"/></a>
+            <a id="delete-handler" th:id="${city.nameStr}" th:name="${city.nameStr}" href="city.html"><img
+                    alt="Delete" th:src="@{/images/delete.png}"/></a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div id="toolbar">
+    <a th:href="@{/}" href="../index.html"><img alt="Back" th:src="@{/images/back.png}"/></a>
+    <a th:href="@{/city/add}" href="city.html"><img alt="Add" th:src="@{/images/add.png}"/></a>
+</div>
+</body>
+</html>
