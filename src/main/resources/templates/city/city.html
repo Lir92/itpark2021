@@ -6,22 +6,23 @@
     <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
 </head>
 <body>
+
+<!-- ДОБАВЛЕНИЕ ДАННЫХ -->
 <form id="add-form" th:action="@{/city/save}" th:if="${city == null}" method="post" action="city.html">
     <p><strong>Add new city:</strong></p>
-
     <div class="row">
         <label for="ruName-input">City name Russian:</label>
-        <input id="ruName-input" name="city name ru" type="text" required="required" maxlength="120"/>
+        <input id="ruName-input" name="ruName" type="text" required="required" maxlength="120"/>
     </div>
 
     <div class="row">
         <label for="enName-input">City name English:</label>
-        <input id="enName-input" name="city name en" type="text" required="required" maxlength="50" />
+        <input id="enName-input" name="enName" type="text" required="required" maxlength="50" />
     </div>
 
     <div class="row">
         <label for="code-input">City code:</label>
-        <input id="code-input" name="code" type=number required="required" maxlength="4" />
+        <input id="code-input" name="code" type=number required="required" maxlength="4" th:min="1" th:max="777" />
     </div>
 
     <div class="row">
@@ -31,12 +32,13 @@
 
     <div class="row">
         <a th:href="@{/cities}" href="cities.html"><img alt="Back" th:src="@{/images/back.png}"/></a>
-        <button type="submit">Save</button>
+        <button id="save" type="submit">Save</button>
     </div>
 </form>
+
+<!-- НИЖЕ РЕДАКТИРОВАНИЕ ДАННЫХ -->
 <form id="edit-form" th:action="@{/city/save(ruName=${city.ruName})}" th:unless="${city == null}" method="post"
       action="city.html" th:object="${city}">
-
     <p><strong>City Info:</strong></p>
     <div class="row">
         <label for="ruName-input">City name rus:</label>
@@ -45,17 +47,17 @@
 
     <div class="row">
         <label for="enName-input">City name eng:</label>
-        <input id="enName-input" name="name" type="text" th:value="*{enName}" required="required" maxlength="120" value="City name English"/>
+        <input id="enName-input" name="enName" type="text" th:value="*{enName}" required="required" maxlength="120" value="City name English"/>
     </div>
 
     <div class="row">
         <label for="code-input">City code:</label>
-        <input id="code-input" name="publishing year" type=number th:value="*{code}" required="required" maxlength="4" value="City code"/>
+        <input id="code-input" name="code" type=number th:value="*{code}" required="required" th:min="1" th:max="777" value="City code"/>
     </div>
 
     <div class="row">
         <label for="population-input">Population:</label>
-        <input id="population-input" name="page number" type=number th:value="*{population}" required="required" maxlength="15" value="Population"/>
+        <input id="population-input" name="population" type=number th:value="*{population}" required="required" th:min="1" maxlength="15" value="Population"/>
     </div>
 
     <div class="row">

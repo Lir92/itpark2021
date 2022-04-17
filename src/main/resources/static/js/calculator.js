@@ -26,7 +26,10 @@ $(function () {
                     if (result.value) {
                         $('#result').text('Result of sum: ' + result.value)
                     }
-           }
+           },
+            error: function (jqXHR, textStatus, errorThrown) { // jqXHR - сформированный запрос от клиента; textStatus - код ошибки ; errorThrown - содержится текст ошибки
+                $('#result').text('Calculate numbers greater 100 is not allowable!')
+            }
         });
     })
 });
