@@ -15,5 +15,5 @@ public interface CityService {
     CityPageDto getPage(Pageable pageable);
     Optional<CityDto> getByRuName(@NotEmpty String cityName);
     CityDto save (@Valid CityDto city);
-    void deleteByName (@NotEmpty String cityName);
+    void deleteByName (String cityName);
 }

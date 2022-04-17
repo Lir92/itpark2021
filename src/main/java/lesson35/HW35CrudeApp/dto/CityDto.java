@@ -12,11 +12,10 @@ public class CityDto {
     @Size(min = 1, max = 100)
     private String ruName;
 
-    @NotNull
+    @NotNull // аннотация ставится над коллекциями или над строками, не используется над Integer или Long
     @Size(min = 1, max = 100)
     private String enName;
 
-    @NotNull
     @Size(min = 1, max = 3)
     private Integer code;
 

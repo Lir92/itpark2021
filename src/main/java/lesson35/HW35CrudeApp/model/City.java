@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Data
 @NoArgsConstructor
@@ -23,7 +24,6 @@ public class City {
     @Column(name = "City_Name_Eng")
     private String enName;
 
-    @NotEmpty
     @Column(name = "Code")
     private Integer code;
 
