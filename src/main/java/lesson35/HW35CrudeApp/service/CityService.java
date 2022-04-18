@@ -13,7 +13,7 @@ public interface CityService {
 
     List<CityDto> findAll();
     CityPageDto getPage(Pageable pageable);
-    Optional<CityDto> getByRuName(@NotEmpty String cityName);
+    Optional<CityDto> getById(@NotEmpty String id);
     CityDto save (@Valid CityDto city);
-    void deleteByName (String cityName);
+    void deleteById(String id);
 }

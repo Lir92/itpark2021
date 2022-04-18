@@ -42,8 +42,8 @@ public class CityServiceImpl implements CityService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<CityDto> getByRuName(@NotEmpty String cityName) {
-        return cityMapper.toOptionalDto(cityRepository.findById(cityName));
+    public Optional<CityDto> getById(@NotEmpty String id) {
+        return cityMapper.toOptionalDto(cityRepository.findById(id));
     }
 
     @Override
@@ -54,7 +54,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     @Transactional
-    public void deleteByName(/*@NotEmpty*/ String cityName) {
-        cityRepository.deleteById(cityName);
+    public void deleteById(/*@NotEmpty*/ String id) {
+        cityRepository.deleteById(id);
     }
 }

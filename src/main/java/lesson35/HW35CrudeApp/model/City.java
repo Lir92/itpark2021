@@ -17,6 +17,10 @@ public class City {
 
     @Id
     @NotEmpty
+    @Column(name = "id")
+    private String id;
+
+    @NotEmpty
     @Column(name = "City_Name_Rus")
     private String ruName;
 

@@ -9,6 +9,10 @@ import javax.validation.constraints.Size;
 public class CityDto {
 
     @NotNull
+    @Size(min = 1, max = 6)
+    private String id;
+
+    @NotNull
     @Size(min = 1, max = 100)
     private String ruName;
 
