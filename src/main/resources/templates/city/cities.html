@@ -6,30 +6,11 @@
     <link rel="stylesheet" th:href="@{/css/style.css}" href="css/style.css">
     <script src="webjars/jquery/3.3.1/jquery.min.js"></script>
     <script>
-        // $(function () {
-        //     $('a[id^=city_]').click(function (event) {
-        //         if (confirm('Are you sure to delete this city?')) {
-        //             let cityName = $(this).attr('id').replace('city_', '');
-        //             $.ajax({
-        //                 url: '/cities/' + cityName,
-        //                 type: 'DELETE',
-        //                 success: function () {
-        //                     location.href = '/cities';
-        //                     // if (result.success) {
-        //                     //     location.href = '/cities';
-        //                     // }
-        //                 }
-        //             });
-        //         }
-        //         event.preventDefault();
-        //     });
-        // });
-
         $(function () {
             $('.delete').click(function () {
-                let ruName = $(this).attr('class').replace('delete', '');
+                let id = $(this).attr('class').replace('delete', '');
                 $.ajax({
-                    url: '/delete/' + ruName.trim(),
+                    url: '/delete/' + id.trim(),
                     type: 'DELETE',
                     success: function () {
                         location.href = '/cities';
@@ -55,12 +36,12 @@
             alt="Next page" th:src="@{/images/next.png}"/></a>
 </div>
 <table class="cities" th:width="600" th:border="black"> <!-- в теге table объявляются наименования столбцов таблицы -->
-
     <thead>
     <tr>
+        <th>ID</th>
         <th>City name Russian</th>
         <th>City name English</th>
-        <th>City code</th>
+        <th>Region code</th>
         <th>Population</th>
         <th>Edit</th>
         <th>Delete</th>
@@ -68,19 +49,17 @@
     </thead>
     <tbody>
     <tr th:each="city: ${cities.data}">
+        <td th:text="${city.id}">id</td>
         <td th:text="${city.ruName}">ruName</td>
         <td th:text="${city.enName}">enName</td>
         <td th:text="${city.code}">code</td>
         <td th:text="${city.population}">population</td>
         <td>
-            <a th:href="@{/city/edit(ruName=${city.ruName})}" href="city.html">
+            <a th:href="@{/city/edit(id=${city.id})}" href="city.html">
                 <img alt="Edit" th:src="@{/images/edit.png}"/></a>
-
-<!--            <a id="delete-handler" th:id="${city.nameStr}" th:name="${city.nameStr}" href="city.html"><img-->
-<!--                    alt="Delete" th:src="@{/images/delete.png}"/></a>-->
         </td>
         <td>
-            <button class="delete" th:classappend="${city.ruName}">
+            <button class="delete" th:classappend="${city.id}">
                 <img alt="Delete" th:src="@{/images/delete.png}"/></button>
         </td>
     </tr>

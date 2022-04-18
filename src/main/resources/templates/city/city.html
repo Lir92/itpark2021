@@ -10,6 +10,12 @@
 <!-- ДОБАВЛЕНИЕ ДАННЫХ -->
 <form id="add-form" th:action="@{/city/save}" th:if="${city == null}" method="post" action="city.html">
     <p><strong>Add new city:</strong></p>
+
+    <div class="row">
+        <label for="id-input">City name Russian:</label>
+        <input id="id-input" name="id" type="text" required="required" maxlength="6"/>
+    </div>
+
     <div class="row">
         <label for="ruName-input">City name Russian:</label>
         <input id="ruName-input" name="ruName" type="text" required="required" maxlength="120"/>
@@ -21,7 +27,7 @@
     </div>
 
     <div class="row">
-        <label for="code-input">City code:</label>
+        <label for="code-input">Region code:</label>
         <input id="code-input" name="code" type=number required="required" maxlength="4" th:min="1" th:max="777" />
     </div>
 
@@ -37,12 +43,18 @@
 </form>
 
 <!-- НИЖЕ РЕДАКТИРОВАНИЕ ДАННЫХ -->
-<form id="edit-form" th:action="@{/city/save(ruName=${city.ruName})}" th:unless="${city == null}" method="post"
+<form id="edit-form" th:action="@{/city/save(id=${city.id})}" th:unless="${city == null}" method="post"
       action="city.html" th:object="${city}">
     <p><strong>City Info:</strong></p>
+
+    <div class="row">
+        <label for="id-input">City ID:</label>
+        <input id="id-input" type="text" th:value="*{id}" readonly="readonly" value="1"/>
+    </div>
+
     <div class="row">
         <label for="ruName-input">City name rus:</label>
-        <input id="ruName-input" type="text" th:value="*{ruName}" readonly="readonly" value="1"/>
+        <input id="ruName-input" name="ruName" type="text" th:value="*{ruName}" required="required" maxlength="120" value="City name Russian"/>
     </div>
 
     <div class="row">
