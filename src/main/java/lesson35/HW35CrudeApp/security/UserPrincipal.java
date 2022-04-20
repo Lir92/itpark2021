@@ -1,7 +1,7 @@
 package lesson35.HW35CrudeApp.security;
 
 import lesson35.HW35CrudeApp.model.User;
-import lesson37.model.type.Status;
+import lesson35.HW35CrudeApp.model.type.Status;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -32,7 +32,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return !Status.LOGIN_EXPIRED.equals(user.getStatus());
+        return !lesson35.HW35CrudeApp.model.type.Status.LOGIN_EXPIRED.equals(user.getStatus());
     }
 
     @Override
