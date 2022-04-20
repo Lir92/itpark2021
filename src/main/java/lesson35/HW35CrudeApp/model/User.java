@@ -1,6 +1,6 @@
 package lesson35.HW35CrudeApp.model;
 
-import lesson37.model.type.Status;
+import lesson35.HW35CrudeApp.model.type.Status;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

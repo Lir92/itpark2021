@@ -54,7 +54,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     @Transactional
-    public void deleteById(/*@NotEmpty*/ String id) {
+    public void deleteById(String id) {
         cityRepository.deleteById(id);
     }
 }
