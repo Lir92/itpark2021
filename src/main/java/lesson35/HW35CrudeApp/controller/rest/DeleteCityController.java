@@ -1,4 +1,4 @@
-package lesson35.HW35CrudeApp.controller;
+package lesson35.HW35CrudeApp.controller.rest;
 
 import lesson35.HW35CrudeApp.service.CityService;
 import lombok.RequiredArgsConstructor;
