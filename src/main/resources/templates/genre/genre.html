@@ -1,12 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Add/Edit/View genre</title>
     <link rel="stylesheet" th:href="@{/css/style.css}" href="/css/style.css"/>
 </head>
 <body>
-<form id="add-form" th:action="@{/genre/save}" th:if="${genre == null}" method="post" action="genre.html">
+<div class="loginPanel" sec:authorize="isAuthenticated()">
+    <span class="loginName" sec:authentication="name"></span>
+    <div class="logoutButton">
+        <a th:href="@{/logout}"><img title="Logout" th:src="@{/images/exit.png}"/></a>
+    </div>
+</div>
+<form id="add-form" sec:authorize="hasRole('ADMIN')" th:action="@{/genre/save}" th:if="${genre == null}" method="post" action="genre.html">
     <p><strong>Add new genre:</strong></p>
 
     <div class="row">
@@ -21,10 +28,10 @@
 
     <div class="row">
         <a th:href="@{/genres}" href="genres.html"><img alt="Back" th:src="@{/images/back.png}"/></a>
-        <button type="submit">Save</button>
+        <button type="submit"><img title="Save" th:src="@{/images/save.png}"/></button>
     </div>
 </form>
-<form id="edit-form" th:action="@{/genre/save(code=${genre.code})}" th:unless="${genre == null}" method="post"
+<form id="edit-form" sec:authorize="hasRole('ADMIN')" th:action="@{/genre/save(code=${genre.code})}" th:unless="${genre == null}" method="post"
       action="genre.html" th:object="${genre}">
     <p><strong>Genre Info:</strong></p>
 
